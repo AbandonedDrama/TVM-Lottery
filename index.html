@@ -12,17 +12,60 @@
     <link rel="stylesheet/less" href="assets\css\index.less">
   </head>
   <body>
+    <header>
+      <div class="title">中奖名单:</div>
+      <div class="list">
+        <div id="list_of_winners" >
+          <ul>
+            <li>153*****742获得中国红iPhone 7 Plus</li>
+            <li>135*****161获得Silk-mask面膜一盒</li>
+            <li>153*****742获得中国红iPhone 7 Plus</li>
+            <li>135*****161获得Silk-mask面膜一盒</li>
+            <li>153*****742获得中国红iPhone 7 Plus</li>
+          </ul>
+        </div>
+      </div>
+    </header>
 
-    <ul>
-      <li class="text">高清方案完善</li>
-      <li class="text">字体~ 宽高换算~ 完善</li>
-      <li class="text">动画效果未完善</li>
-      <li class="text">5.19前交付至测试</li>
-    </ul>
-
-    <script src="assets\js\less.js" charset="utf-8"></script>
+    <div class="title">
+      <img src="assets\img\big_wheel_title-min.png">
+    </div>
+    <div class="turntable">
+      <img src="assets\img\big_wheel_box-min.png">
+    </div>
+    <div class="pointer">
+      <img src="assets\img\big_wheel_btn-min.png">
+    </div>
+    <div class="rule">
+      <img src="assets\img\bg_2-min.png">
+    </div>
+    <div class="rule_bg">
+      <img src="" alt="">
+    </div>
     <script src="assets\js\rem.js" charset="utf-8"></script>
-    <script src="assets\js\zepot.js" charset="utf-8"></script>
-
+    <script src="assets\js\less.js" charset="utf-8"></script>
+    <script src="assets\js\jQuery.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      $(function(){
+        var $this = $("#list_of_winners");
+        var scrollTimer;
+        $this.hover(function(){
+          clearInterval(scrollTimer);
+        },function(){
+          scrollTimer = setInterval(function(){
+            scrollNews( $this );
+          }, 3000 );
+        }).trigger("mouseleave");
+      });
+      function scrollNews(obj){
+        var $self = obj.find("ul:first");
+        var lineHeight = $self.find("li:first").width(); //获取宽度，向上滚动则需要获取高度.height()
+        $self.animate({
+          "marginLeft" : -lineHeight +"px"
+        }, 600 , function(){ //向左滚动，向上滚动则需要改为marginTop,其他方向类似，下同
+          $self.css({marginLeft:0}).find("li:first").appendTo($self); //appendTo能直接移动元素
+        })
+      }
+    </script>
   </body>
 </html>

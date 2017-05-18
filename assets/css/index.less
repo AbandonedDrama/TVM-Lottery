@@ -3,10 +3,97 @@
   padding: 0;
   margin: 0;
 }
-h1{
+html,body{
+  width: 100%;
   .sx_font_size(font-size, 24);
 }
-.text{
-  .sx_font_size(font-size, 30);
-  color: red;
+li{
+  list-style:none;
+}
+body{
+  background: url(../img/bg_1-min.jpg);
+  background-size: 100% auto;
+  position: relative;
+  header{
+    position: fixed;
+    box-sizing: border-box;
+    width: 100%;
+    background: #FFD0C1;
+    top: 0;
+    color: #E0582F;
+    overflow:hidden;
+    .sx_rem(height, 60);
+    .sx_rem(padding-top, 15);
+    .sx_rem(padding-left, 30);
+    .sx_rem(padding-right, 30);
+    .sx_font_size(font-size, 30);
+    .title{
+      float: left;
+      box-sizing: border-box;
+      .sx_rem(padding-right, 10);
+      width: 20%;
+    }
+    .list{
+      float: left;
+      width: 80%;
+      overflow:hidden;
+      #list_of_winners{
+        width: 100%;
+        ul{
+          width: 300%;
+          li{
+            float:left;
+            text-align: center;
+            .sx_rem(margin-bottom, 10);
+            .sx_rem(margin-right, 15);
+            display:inline;
+            .sx_font_size(font-size, 30);
+            color: #E0582F;
+          }
+        }
+      }
+    }
+  }
+  .title{
+    position: absolute;
+    margin: auto;
+    .sx_rem(top, 100);
+    left: 0;
+    right: 0;
+    .sx_rem(width, 600);
+    img{
+      width: 100%;
+    }
+  }
+  .turntable{
+    position: absolute;
+    margin: auto;
+    .sx_rem(top, 350);
+    left: 0;
+    right: 0;
+    .sx_rem(width, 700);
+    img{
+      width: 100%;
+    }
+  }
+  .pointer{
+    position: absolute;
+    margin: auto;
+    .sx_rem(top, 570);
+    left: 0;
+    right: 0;
+    .sx_rem(width, 182);
+    img{
+      width: 100%;
+    }
+  }
+  .rule{
+    position: absolute;
+    margin: auto;
+    .sx_rem(top, 1110);
+    width: 100%;
+    img{
+      width: 100%;
+    }
+  }
 }

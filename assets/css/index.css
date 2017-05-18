@@ -1,0 +1,354 @@
+/* ============================================================
+   样式重置
+   ============================================================ */
+body,p,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,form,fieldset,legend,input,select,textarea,button,th,td{margin:0;padding:0;font-family: -apple-system, BlinkMacSystemFont, "PingFang SC","Helvetica Neue",STHeiti,"Microsoft Yahei",Tahoma,Simsun,sans-serif;}
+li{list-style: none;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+ul,dl,ol{list-style:none;}
+img,fieldset,input[type="submit"]{border:0 none;}
+img{display:inline-block;overflow:hidden;vertical-align:top;}
+em{font-style:normal;}
+strong{font-weight:normal;}
+table{border-collapse:collapse;border-spacing:0;}
+button,input[type="button"]{cursor:pointer;border:0 none;}
+textarea{word-wrap:break-word;resize:none;}  /* word-wrap for opera, resize for webkit */
+menu{margin:0;padding:0;}
+body{-webkit-user-select:none;-webkit-text-size-adjust:none!important;font-family:Helvetica;}
+input[type="number"]{-webkit-user-select:text;}
+a,button,input,img{-webkit-touch-callout:none;}/* 1.ios 长按时不触发系统的菜单 2.禁止长按时下载图片 */
+input,select,textarea{outline:none;}
+/*框架*/
+html{-ms-touch-action: none;}/* 阻止windows Phone 的默认触摸事件 */
+body{overflow: hidden;}
+.page-wrap{overflow:hidden}
+.page{display:none;width:100%;height:100%;overflow:hidden;position:absolute;top:0;left:0}
+.content{width:100%;height:100%;display:none;position:relative;z-index:0}
+.current .content,.slide .content{display:block}
+.current{display:block;z-index:1}
+.slide{display:block;z-index:2}
+.swipe{display:block;z-index:3;transition-duration:0ms!important;-webkit-transition-duration:0ms!important}
+/* ---------------------------------------------------------------------- */
+
+.body1{
+  background: url("../img/one_background-min.jpg") center center;
+  background-size: cover;
+}
+.body2{
+  background: url("../img/two_background-min.jpg") center center;
+  background-size: cover;
+}
+.body3{
+  background: url("../img/three_background-min.jpg") center center;
+  background-size: cover;
+}
+.body4{
+  background: url("../img/four_background-min.jpg") center center;
+  background-size: cover;
+}
+
+#bottom_background{
+  width: 100%;
+  background: #C7226E;
+  position: fixed;
+  bottom: 0;
+  height: 100px;
+}
+
+#bottom_nav{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background: #C7226E;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#bottom_nav>li{
+  height: 100%;
+  flex: 1;
+  font-size: 30px;
+  text-align: center;
+  color: #fff;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+#bottom_nav>li:nth-of-type(1)::before{
+  content: url("../img/android_icon-min.png")
+}
+
+#bottom_nav>li:nth-of-type(2)::before{
+  content: url("../img/ios_icon-min.png")
+}
+
+#long_string{
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  width: 1px;
+  height: 60px;
+  background: #fff;
+}
+
+.content1{
+  width: 100%;
+  height: 100%;
+  background: url("../img/background.png");
+  background-size: cover;
+  position: relative;
+}
+
+.content1 .none{
+  display: none;
+}
+
+.content1 .content1_1{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 318px;
+  top: 80px;
+}
+
+.content1 .content1_2{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 552px;
+  top: 305px;
+}
+
+.content1 .content1_3{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 388px;
+  bottom: 190px;
+  z-index: 9999;
+}
+
+.content1 .content1_4{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 256px;
+  top: 480px;
+}
+
+.content1 .content1_5{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 115px;
+  top: 564px;
+}
+
+.content1 .content1_6{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 114px;
+  top: 566px;
+}
+
+
+
+
+.content2{
+  width: 100%;
+  height: 100%;
+  background: url("../img/background.png");
+  background-size: cover;
+  position: relative;
+}
+
+.content2 .none{
+  display: none;
+}
+
+.content2 .content2_1{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 255px;
+  top: 80px;
+}
+
+.content2 .content2_2{
+  margin: 0 auto;
+  width: 552px;
+  height: 925px;
+  margin-top: 305px;
+  background: url("../img/two_2-min.png") no-repeat center center;
+  background-size: 100%;
+  box-sizing: border-box;
+  padding: 40px 50px 80px 50px;
+}
+
+.content2 .content2_2 .content2_2_1{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+/* -170到头 */
+.content2 .content2_2 .content2_2_1>img{
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+
+
+
+
+
+
+
+.content3{
+  width: 100%;
+  height: 100%;
+  background: url("../img/background.png");
+  background-size: cover;
+  position: relative;
+}
+
+.content3 .none{
+  display: none;
+}
+
+.content3 .content3_1{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 254px;
+  top: 80px;
+}
+
+.content3 .content3_2{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 552px;
+  top: 300px;
+}
+.content3 .content3_3{
+  position: absolute;
+  margin: auto;
+  left: 50px;
+  width: 242px;
+  top: 395px;
+}
+.content3 .content3_4{
+  position: absolute;
+  margin: auto;
+  left: 50px;
+  width: 248px;
+  top: 555px;
+}
+
+
+
+
+
+
+.content4{
+  width: 100%;
+  height: 100%;
+  background: url("../img/background.png");
+  background-size: cover;
+  position: relative;
+}
+
+.content4 .none{
+  display: none;
+}
+
+.content4 .content4_1{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 445px;
+  top: 80px;
+}
+
+.content4 .content4_2{
+  margin: 0 auto;
+  width: 552px;
+  height: 925px;
+  margin-top: 305px;
+  background: url("../img/four_2-min.png") no-repeat center center;
+  background-size: 100%;
+  box-sizing: border-box;
+  padding: 20px 50px 35px 50px;
+}
+
+.content4 .content4_2 .content4_2_1{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+/* -170到头 */
+.content4 .content4_2 .content4_2_1>img{
+  width: 1302px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+}
+
+.arrow {
+  display: block;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  margin-left: -7.5px;
+  border: 5px solid transparent;
+  border-top: 5px solid #fff;
+  border-left: 5px solid #fff;
+  z-index: 99;
+  opacity: .8;
+  -webkit-transform: rotate(45deg);
+  -webkit-animation: arrow 1.5s infinite ease-in-out;
+}
+
+.arrow1{
+  bottom: 10px;
+}
+
+.arrow2{
+  bottom: 40px;
+}
+
+@-webkit-keyframes arrow {
+  0% {
+    opacity:0;
+    -webkit-transform:translate(0, 0px) rotate(45deg)
+  }
+  50% {
+    opacity:1;
+    -webkit-transform:translate(0, -5px) rotate(45deg)
+  }
+  100% {
+    opacity:0;
+    -webkit-transform:translate(0, -10px) rotate(45deg)
+    }
+}
