@@ -42,7 +42,7 @@ body{
   background-size: 100% auto;
   position: relative;
   header{
-    z-index: 99;
+    z-index: 9999;
     position: fixed;
     box-sizing: border-box;
     width: 100%;
@@ -190,10 +190,9 @@ body{
     position: absolute;
     z-index: 999;
     top: 0;
-    // background: rgba(0, 0, 0, 0.4);
     width: 100%;
     height: 100%;
-    // display: none;
+    display: none;
     .logIn_wrap{
       width: 100%;
       height: 100%;
@@ -216,6 +215,10 @@ body{
         .sx_rem(-moz-border-radius, 18);
         .sx_rem(-webkit-border-radius, 18);
         .sx_rem(border-radius, 18);
+        -webkit-box-shadow: 40px 40px 25px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+        -moz-box-shadow: 40px 40px 25px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+        box-shadow: 40px 40px 25px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+        -o-box-shadow: 40px 40px 25px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
         .top{
           width: 100%;
           .sx_rem(height, 100);
@@ -226,6 +229,13 @@ body{
           .sx_rem(line-height, 100);
           text-align: center;
           font-weight: 600;
+          position: relative;
+          img{
+            position: absolute;
+            .sx_rem(top, 10);
+            .sx_rem(right, 10);
+            .sx_rem(width, 55);
+          }
         }
         .logIn_from{
           width: 100%;
@@ -276,6 +286,33 @@ body{
             }
           }
         }
+      }
+    }
+  }
+  #cjMsg{
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    .cjMsg_wrap{
+      width: 100%;
+      height: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      img{
+        .sx_rem(width, 680);
       }
     }
   }
