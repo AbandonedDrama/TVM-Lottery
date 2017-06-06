@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>iOS click bug test</title>
+
+    <style>
+        .container {
+        }
+
+        .target {
+            display: block;
+            text-align: center;
+            margin: 100px 30px 0;
+            padding: 10px 0;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="target"> Click Me! </div>
+    </div>
+
+    <script src="assets\js\jQuery.js"></script>
+    <script type="text/javascript">
+        // 或者 $(document).on('click', ....)
+        $('body').on('click', '.target', function (e) {
+            alert('click');
+        });
+    </script>
+</body>
+</html>

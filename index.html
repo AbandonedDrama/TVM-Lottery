@@ -1,1 +1,394 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>幸运大抽奖</title><meta name="robots"content="none"><meta http-equiv="Cache-Control"content="no-siteapp"/><meta name="format-detection"content="telephone=no,email=no"><meta http-equiv="X-UA-Compatible"content="IE=edge,chrome=1"/><meta name="viewport"content="width=device-width,initial-scale=1,user-scalable=no"><link rel="stylesheet/less"href="assets\css\index.less"></head><body><header><div class="winners_title">中奖名单:</div><div class="list"><div id="list_of_winners"><ul><li>130*****409获得中国红iPhone 7 Plus</li><li>135*****161获得Silk-mask面膜一盒</li><li>153*****742获得888元 机器人</li><li>133*****685获得Silk-mask面膜一盒</li><li>132*****446获得Silk-mask面膜一盒</li><li>158*****446获得Silk-mask面膜一盒</li><li>185*****885获得Silk-mask面膜一盒</li><li>157*****909获得中国红iPhone 7 Plus</li><li>170*****481获得Silk-mask面膜一盒</li></ul></div></div></header><!--标题--><div class="title"><img src="assets\img\big_wheel_title-min.png"></div><!--转盘背景--><div class="turntable_bg"><img src="assets\img\big_wheel_box-min.png"></div><!--转盘外围--><div class="turntable"><img src="assets\img\outside-min.png"></div><!--转盘内部--><div class="turntable_inside"id="rotate"><img src="assets\img\inside-min.png"></div><!--转盘指针--><div class="pointer"><img src="assets\img\big_wheel_btn-min.png"></div><!--活动规则--><div class="rule"><img src="assets\img\bg_2-min.png"></div><div class="rule_bg"><div class="rule_bg_title">活动规则</div><p>（1）本次活动每人可以获得抽奖1次。</p><p>（2）活动时间为5月27-5月31号</p><p>（3）为了方便领奖，请认真填写信息资料。</p><p>（4）获奖名单将在6月2号于公众号内公布。</p><p>（5）实物奖励将在中奖后的20个工作日发送。</p><p>（6）本活动一切解释权归哎哟不错机器人科研有限公司所有。</p></div><!--登录页--><div id="logIn"><div class="logIn_wrap"><div class="logIn_body"><div class="top">个人信息<img src="assets\img\close-min.png"onclick="closeLogIn();"></div><div class="logIn_from"><li><div class="input_label">姓名:</div><div class="input"><input type="text"id="name"name="name"value=""></div></li><li><div class="input_label">电话:</div><div class="input"><input type="text"id="phone_number"name="phone_number"value=""></div></li><li><div class="input_label">地址:</div><div class="input"><input type="text"id="address"name="address"value=""></div></li><div class="logIn_buttom"onclick="logIn();"><img src="assets\img\submit_btn-min.png"></div></div></div></div></div><!--中奖--><div id="cjMsg"><div class="cjMsg_wrap"><img src="assets\img\not_winning_box-min.jpg"></div></div><script src="assets\js\rem.js"charset="utf-8"></script><script src="assets\js\less.js"charset="utf-8"></script><script src="assets\js\jQuery.js"charset="utf-8"></script><script src="assets\js\awardRotate.js"charset="utf-8"></script><script type="text/javascript">window.onload=function(){$(".pointer").on('click','img',function(){begin()})};$(function(){var $this=$("#list_of_winners");var scrollTimer;$this.hover(function(){clearInterval(scrollTimer)},function(){scrollTimer=setInterval(function(){scrollNews($this)},3000)}).trigger("mouseleave")});function scrollNews(obj){var $self=obj.find("ul:first");var lineHeight=$self.find("li:first").width();$self.animate({"marginLeft":-lineHeight+"px"},600,function(){$self.css({marginLeft:0}).find("li:first").appendTo($self)})};var bRotate=false;function rnd(n,m){return Math.floor(Math.random()*(m-n+1)+n)};var rotateFn=function(angles,txt){bRotate=!bRotate;$('#rotate').stopRotate();$('#rotate').rotate({angle:0,animateTo:angles+1800,duration:10000,callback:function(){clearInterval(myTurntable);bRotate=!bRotate;handleTvmLottery();if(txt>>0===3){cjMsgImg(1)}else{cjMsgImg()}}})};function cjMsgImg(staus){var winning='assets/img/winning_box-min.png';var not_winning='assets/img/not_winning_box-min.jpg';var $cjMsg=$("#cjMsg");if(staus){$cjMsg.find('img').attr('src',winning)}else{$cjMsg.find('img').attr('src',not_winning)}$cjMsg.fadeIn();notWinning()};function handleTvmLottery(){$.ajax({type:"POST",url:"http://a001.aybc.so/Shop/handleTvmLottery",data:{phone_number:window.phone_number,code:window.code},success:function(msg){if(msg.flag>>0===1000){window.tvm_member_lottery_times=msg.lottery_times;if(msg.lottery_times>>0===1){alert("您的抽奖次数以用完,谢谢您的参加!请继续关注本公众号!不定时都会有新的惊喜!");notWinning()}else{location.replace(location)}}}})};window.user=null;function begin(item){if(user){if(bRotate)return;drawAnimation(window.code)}else{var $logIn=$("#logIn");$logIn.fadeIn()}};function logIn(){var phoneReg=/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;var $name=$("#name");var $phone_number=$("#phone_number");var $address=$("#address");var name=$name.val();window.phone_number=$phone_number.val();var address=$address.val();if(name){if(phone_number){if(address){if(phoneReg.test(phone_number)){$.ajax({type:"POST",url:"http://a001.aybc.so/Shop/handleTvmLotteryMember",data:{name:name,phone_number:phone_number,address:address},success:function(msg){if(msg.flag>>0===1000){window.tvm_member_lottery_times=msg.tvm_member_lottery_times;$("#logIn").fadeOut();window.user=1;if(msg.tvm_member_lottery_times>>0===0){window.alert("开始抽奖吧!");getLotto()}else{window.alert(`您的抽奖次数以用完,谢谢您的参加!请继续关注本公众号!不定时都会有新的惊喜!`);notWinning();window.user=null;fromInit()}}else{window.alert("活动已结束!")}}})}else{window.alert("请输入正确的电话号码!")}}else{window.alert("请完善地址!")}}else{window.alert("请输入电话号码!")}}else{window.alert("请完善姓名!")}};function notWinning(){$(".pointer").find('img').attr('src','assets/img/big_wheel_btn_disabled.png');$(".pointer").off('click')};function getLotto(){$.ajax({type:"POST",url:"http://a001.aybc.so/Shop/getCurrentTime",success:function(msg){if(msg.flag>>0===1000){window.code=msg.code}}})};function drawAnimation(item){turntableAnimation();window.myTurntable=setInterval(function(){turntableAnimation()},800);switch(item){case 0:rotateFn(45-45/2,'0');break;case 1:rotateFn(135-45/2,'1');break;case 2:rotateFn(135-45/2,'2');break;case 3:rotateFn(180-45/2,'3');break;case 4:rotateFn(225-45/2,'4');break;case 5:rotateFn(270-45/2,'5');break;case 6:rotateFn(360-45/2,'6');break;case 7:rotateFn(360-45/2,'7');break}};function turntableAnimation(){var $turntable=$(".turntable");$turntable.css({display:'none'});setTimeout(function(){$turntable.removeAttr('style')},400)};function fromInit(){var $name=$("#name");var $phone_number=$("#phone_number");var $address=$("#address");$name.val('');$phone_number.val('');$address.val('')};function closeLogIn(){$("#logIn").hide();fromInit()};</script></body></html>
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>
+      幸运大抽奖
+    </title>
+    <meta name="robots" content="none">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="stylesheet/less" href="assets\css\index.less">
+  </head>
+
+  <body>
+    <header>
+      <div class="winners_title">
+        中奖名单:
+      </div>
+      <div class="list">
+        <div id="list_of_winners">
+          <ul>
+            <li>
+              130*****409获得中国红iPhone 7 Plus
+            </li>
+            <li>
+              135*****161获得Silk-mask面膜一盒
+            </li>
+            <li>
+              153*****742获得888元 机器人
+            </li>
+            <li>
+              133*****685获得Silk-mask面膜一盒
+            </li>
+            <li>
+              132*****446获得Silk-mask面膜一盒
+            </li>
+            <li>
+              158*****446获得Silk-mask面膜一盒
+            </li>
+            <li>
+              185*****885获得Silk-mask面膜一盒
+            </li>
+            <li>
+              157*****909获得中国红iPhone 7 Plus
+            </li>
+            <li>
+              170*****481获得Silk-mask面膜一盒
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!--标题-->
+    <div class="title">
+      <img src="assets\img\big_wheel_title-min.png">
+    </div>
+    <!--转盘背景-->
+    <div class="turntable_bg">
+      <img src="assets\img\big_wheel_box-min.png">
+    </div>
+    <!--转盘外围-->
+    <div class="turntable">
+      <img src="assets\img\outside-min.png">
+    </div>
+    <!--转盘内部-->
+    <div class="turntable_inside" id="rotate">
+      <img src="assets\img\inside-min.png">
+    </div>
+    <!--转盘指针-->
+    <div class="pointer">
+      <img src="assets\img\big_wheel_btn-min.png">
+    </div>
+    <!--活动规则-->
+    <div class="rule">
+      <img src="assets\img\bg_2-min.png">
+    </div>
+    <div class="rule_bg">
+      <div class="rule_bg_title">
+        活动规则
+      </div>
+      <p>
+        （1）本次活动每人可以获得抽奖1次。
+      </p>
+      <p>
+        （2）活动时间为5月27-5月31号
+      </p>
+      <p>
+        （3）为了方便领奖，请认真填写信息资料。
+      </p>
+      <p>
+        （4）获奖名单将在6月2号于公众号内公布。
+      </p>
+      <p>
+        （5）实物奖励将在中奖后的20个工作日发送。
+      </p>
+      <p>
+        （6）本活动一切解释权归哎哟不错机器人科研有限公司所有。
+      </p>
+    </div>
+    <!--登录页-->
+    <div id="logIn">
+      <div class="logIn_wrap">
+        <div class="logIn_body">
+          <div class="top">
+            个人信息
+            <img src="assets\img\close-min.png" onclick="closeLogIn();">
+          </div>
+          <div class="logIn_from">
+            <li>
+              <div class="input_label">
+                姓名:
+              </div>
+              <div class="input">
+                <input type="text" id="name" name="name" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input_label">
+                电话:
+              </div>
+              <div class="input">
+                <input type="text" id="phone_number" name="phone_number" value="">
+              </div>
+            </li>
+            <li>
+              <div class="input_label">
+                地址:
+              </div>
+              <div class="input">
+                <input type="text" id="address" name="address" value="">
+              </div>
+            </li>
+            <div class="logIn_buttom" onclick="logIn();">
+              <img src="assets\img\submit_btn-min.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--中奖-->
+    <div id="cjMsg">
+      <div class="cjMsg_wrap">
+        <img src="assets\img\not_winning_box-min.png">
+      </div>
+    </div>
+    <script src="assets\js\rem.js" charset="utf-8">
+    </script>
+    <script src="assets\js\less.js" charset="utf-8">
+    </script>
+    <script src="assets\js\jQuery.js" charset="utf-8">
+    </script>
+    <script src="assets\js\fastclick.js" charset="utf-8">
+    </script>
+    <script src="assets\js\awardRotate.js" charset="utf-8">
+    </script>
+    <script type="text/javascript">
+      window.onload = function() {
+        $("body").on('click', '.pointer',
+        function(e) {
+          begin()
+        })
+      };
+      $(function() {
+        var $this = $("#list_of_winners");
+        var scrollTimer;
+        $this.hover(function() {
+          clearInterval(scrollTimer)
+        }, function() {
+            scrollTimer = setInterval(function() {
+              scrollNews($this)
+            }, 3000)
+        }).trigger("mouseleave");
+        FastClick.attach(document.body);
+      });
+
+      function scrollNews(obj) {
+        var $self = obj.find("ul:first");
+        var lineHeight = $self.find("li:first").width();
+        $self.animate({
+          "marginLeft": -lineHeight + "px"
+        },
+        600,
+        function() {
+          $self.css({
+            marginLeft: 0
+          }).find("li:first").appendTo($self)
+        })
+      };
+      var bRotate = false;
+
+      function rnd(n, m) {
+        return Math.floor(Math.random() * (m - n + 1) + n)
+      };
+      var rotateFn = function(angles, txt) {
+        bRotate = !bRotate;
+        $('#rotate').stopRotate();
+        $('#rotate').rotate({
+          angle: 0,
+          animateTo: angles + 1800,
+          duration: 10000,
+          callback: function() {
+            clearInterval(myTurntable);
+            bRotate = !bRotate;
+            handleTvmLottery();
+            if (txt >> 0 === 3) {
+              cjMsgImg(1)
+            } else {
+              cjMsgImg()
+            }
+          }
+        })
+      };
+
+      function cjMsgImg(staus) {
+        var winning = 'assets/img/winning_box-min.png';
+        var not_winning = 'assets/img/not_winning_box-min.png';
+        var $cjMsg = $("#cjMsg");
+        if (staus) {
+          $cjMsg.find('img').attr('src', winning)
+        } else {
+          $cjMsg.find('img').attr('src', not_winning)
+        }
+        $cjMsg.fadeIn();
+        notWinning()
+      };
+
+      function handleTvmLottery() {
+        $.ajax({
+          type: "POST",
+          url: "http://a001.aybc.so/Shop/handleTvmLottery",
+          data: {
+            phone_number: window.phone_number,
+            code: window.code
+          },
+          success: function(msg) {
+            if (msg.flag >> 0 === 1000) {
+              window.tvm_member_lottery_times = msg.lottery_times;
+              if (msg.lottery_times >> 0 === 1) {
+                alert("您的抽奖次数以用完,谢谢您的参加!请继续关注本公众号!不定时都会有新的惊喜!");
+                notWinning()
+              } else {
+                location.replace(location)
+              }
+            }
+          }
+        })
+      };
+      window.user = null;
+
+      function begin(item) {
+        if (user) {
+          if (bRotate) return;
+          drawAnimation(window.code)
+        } else {
+          var $logIn = $("#logIn");
+          $logIn.fadeIn()
+        }
+      };
+
+      function logIn() {
+        var phoneReg = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+        var $name = $("#name");
+        var $phone_number = $("#phone_number");
+        var $address = $("#address");
+        var name = $name.val();
+        window.phone_number = $phone_number.val();
+        var address = $address.val();
+        if (name) {
+          if (phone_number) {
+            if (address) {
+              if (phoneReg.test(phone_number)) {
+                $.ajax({
+                  type: "POST",
+                  url: "http://a001.aybc.so/Shop/handleTvmLotteryMember",
+                  data: {
+                    name: name,
+                    phone_number: phone_number,
+                    address: address
+                  },
+                  success: function(msg) {
+                    if (msg.flag >> 0 === 1000) {
+                      window.tvm_member_lottery_times = msg.tvm_member_lottery_times;
+                      $("#logIn").fadeOut();
+                      window.user = 1;
+                      if (msg.tvm_member_lottery_times >> 0 === 0) {
+                        window.alert("开始抽奖吧!");
+                        getLotto()
+                      } else {
+                        window.alert('您的抽奖次数以用完, 谢谢您的参加 ! 请继续关注本公众号 ! 不定时都会有新的惊喜 !');
+                        notWinning();
+                        window.user = null;
+                        fromInit()
+                      }
+                    } else {
+                      window.alert("活动已结束!")
+                    }
+                  }
+                })
+              } else {
+                window.alert("请输入正确的电话号码!")
+              }
+            } else {
+              window.alert("请完善地址!")
+            }
+          } else {
+            window.alert("请输入电话号码!")
+          }
+        } else {
+          window.alert("请完善姓名!")
+        }
+      };
+
+      function notWinning() {
+        $(".pointer").find('img').attr('src', 'assets/img/big_wheel_btn_disabled.png');
+        $(".pointer").off('click')
+      };
+
+      function getLotto() {
+        $.ajax({
+          type: "POST",
+          url: "http://a001.aybc.so/Shop/getCurrentTime",
+          success: function(msg) {
+            if (msg.flag >> 0 === 1000) {
+              window.code = msg.code
+            }
+          }
+        })
+      };
+
+      function drawAnimation(item) {
+        turntableAnimation();
+        window.myTurntable = setInterval(function() {
+          turntableAnimation()
+        },
+        800);
+        switch (item) {
+        case 0:
+          rotateFn(45 - 45 / 2, '0');
+          break;
+        case 1:
+          rotateFn(135 - 45 / 2, '1');
+          break;
+        case 2:
+          rotateFn(135 - 45 / 2, '2');
+          break;
+        case 3:
+          rotateFn(180 - 45 / 2, '3');
+          break;
+        case 4:
+          rotateFn(225 - 45 / 2, '4');
+          break;
+        case 5:
+          rotateFn(270 - 45 / 2, '5');
+          break;
+        case 6:
+          rotateFn(360 - 45 / 2, '6');
+          break;
+        case 7:
+          rotateFn(360 - 45 / 2, '7');
+          break
+        }
+      };
+
+      function turntableAnimation() {
+        var $turntable = $(".turntable");
+        $turntable.css({
+          display: 'none'
+        });
+        setTimeout(function() {
+          $turntable.removeAttr('style')
+        },
+        400)
+      };
+
+      function fromInit() {
+        var $name = $("#name");
+        var $phone_number = $("#phone_number");
+        var $address = $("#address");
+        $name.val('');
+        $phone_number.val('');
+        $address.val('')
+      };
+
+      function closeLogIn() {
+        $("#logIn").hide();
+        fromInit()
+      };
+    </script>
+  </body>
+
+</html>
